@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pos_app/utils/currency_format.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class QrResultModal extends StatefulWidget {
   final String qrData;
@@ -70,6 +72,102 @@ class _QrResultModalState extends State<QrResultModal> {
       statusText = 'Cetak Selesai';
     }
 
-    return Container();
+    return Container(
+      height: 530,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+      ),
+      padding: EdgeInsets.all(24),
+      child: Column(
+        children: [
+          // Handle bar
+          Container(
+            width: 50,
+            height: 5,
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(30),
+            ),
+          ),
+          SizedBox(height: 20),
+
+          // Status / Mode
+          AnimatedContainer(
+            duration: Duration(milliseconds: 300),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            decoration: BoxDecoration(
+              color: statusBgColor,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: statusColor),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(statusIcon, size: 20, color: statusColor),
+                SizedBox(width: 10),
+                Text(
+                  statusText,
+                  style: TextStyle(
+                    color: statusColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 20),
+          Text(
+            'SCAN UNTUK MEMBAYAR',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              color: Color(0xFF2E3192),
+            ),
+          ),
+          SizedBox(height: 25),
+          Text(
+            'Total: ${formatRupiah(widget.total)}',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 20),
+
+          // QR
+          Container(
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey.shade200),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.blue.withValues(alpha: 0.1),
+                  blurRadius: 15,
+                ),
+              ],
+            ),
+            child: QrImageView(
+              data: widget.qrData,
+              version: QrVersions.auto,
+              size: 220.0,
+            ),
+          ),
+          Spacer(),
+
+          // Close button
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: ElevatedButton(
+              onPressed: widget.onClose,
+              child: Text('Tutup'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.grey[200],
+                foregroundColor: Colors.black,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
