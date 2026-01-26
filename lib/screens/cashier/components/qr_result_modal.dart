@@ -93,8 +93,7 @@ class _QrResultModalState extends State<QrResultModal> {
           SizedBox(height: 20),
 
           // Status / Mode
-          AnimatedContainer(
-            duration: Duration(milliseconds: 300),
+          Container(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
               color: statusBgColor,
