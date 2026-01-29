@@ -21,7 +21,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
         children: [
@@ -34,8 +34,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
 
               for (final barcode in capture.barcodes) {
                 _handleQrCode(barcode.rawValue);
-
-                // TODO: buat function untuk pemopresan qr code
               }
             },
           ),

@@ -225,17 +225,17 @@ class _CashierScreenState extends State<CashierScreen> {
             child: GridView.builder(
               padding: EdgeInsets.symmetric(horizontal: 16),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // menampilkan 2 card secara horizontal
+                crossAxisCount: 2,
                 childAspectRatio: 0.8,
                 crossAxisSpacing: 15,
                 mainAxisExtent: 15,
               ),
-              itemCount: menus.length, // length mengambil keseluruhan menu
+              itemCount: menus.length,
               itemBuilder: (context, index) {
-                final product = menus(index);
+                final product = menus[index];
                 final qty = _cart[product] ?? 0;
 
-                // pemanggilan product list pada product cart
+                // PEMANGGILAN PRODUCT LIST PADA PRODUCT CARD
                 return ProductCard(
                   product: product,
                   qty: qty,
