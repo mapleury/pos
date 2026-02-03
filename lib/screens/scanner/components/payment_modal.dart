@@ -10,9 +10,9 @@ class PaymentModal extends StatelessWidget {
   const PaymentModal({
     super.key,
     required this.id,
-    required this.total,
     required this.onPay,
     required this.onCancel,
+    required this.total,
   });
 
   @override
@@ -26,9 +26,9 @@ class PaymentModal extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Handle bar
+          // handle bar
           Container(
-            width: 40,
+            width: 20,
             height: 4,
             decoration: BoxDecoration(
               color: Colors.grey[300],
@@ -36,6 +36,8 @@ class PaymentModal extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20),
+
+          // icon checklist
           Container(
             padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
@@ -44,30 +46,28 @@ class PaymentModal extends StatelessWidget {
             ),
             child: Icon(Icons.verified_rounded, size: 50, color: Colors.green),
           ),
-
           SizedBox(height: 15),
 
           // detail tagihan
           Text(
-            "Tagihan ditemukan!",
+            'Tagihan Ditemukan!',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Color(0xFF2E3192),
             ),
           ),
-          SizedBox(height: 5),
-
+          SizedBox(height: 10),
           Text("ID: $id", style: TextStyle(color: Colors.grey)),
-
           Divider(height: 30),
 
+          // detail harga
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Total Tagihan", style: TextStyle(fontSize: 16)),
+              Text('Total Tagihan', style: TextStyle(fontSize: 16)),
               Text(
-                "Status",
+                'Status',
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
             ],
@@ -101,11 +101,12 @@ class PaymentModal extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 30),
+          SizedBox(height: 10),
 
-          //button bayar sekarang
+          // bottom bayar sekarang
           SizedBox(
             width: double.infinity,
+            height: 48,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.zero,
@@ -124,10 +125,10 @@ class PaymentModal extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   child: Text(
-                    "BAYAR SEKARANG",
+                    'BAYAR SEKARANG',
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
                       fontSize: 16,
+                      fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
@@ -138,7 +139,7 @@ class PaymentModal extends StatelessWidget {
           SizedBox(height: 10),
           TextButton(
             onPressed: onCancel,
-            child: Text("BATALKAN", style: TextStyle(color: Colors.grey)),
+            child: Text("Batalkan", style: TextStyle(color: Colors.grey)),
           ),
         ],
       ),

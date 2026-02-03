@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:pos_app/screens/scanner/components/payment_modal.dart';
@@ -25,19 +26,17 @@ class _ScannerScreenState extends State<ScannerScreen> {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          //Camera Scanner
+          // camera scanner
           MobileScanner(
             controller: controller,
             onDetect: (capture) {
               if (_isScanned) return;
-              // kondisi yang ada di perulangan for, sudah berhasil ditangkap oleh camera
-
+              // kondisi yang ada di perulangan for, adalah kondisi ketika QR yang ditangkap oleh kamera
               for (final barcode in capture.barcodes) {
-                _handleQrCode(barcode.rawValue);
+                _handleQRCode(barcode.rawValue);
               }
             },
           ),
-
           ScannerOverlay(),
           ScannerHeader(controller: controller),
         ],
@@ -45,10 +44,10 @@ class _ScannerScreenState extends State<ScannerScreen> {
     );
   }
 
-  void _handleQrCode(String? code) {
+  void _handleQRCode(String? code) {
     if (code != null) {
       if (code.startsWith("PAY:")) {
-        //QR Code valid
+        // QR Code Valid
         setState(() {
           _isScanned = true;
 
@@ -59,7 +58,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
           _showPaymentModal(id, total);
         });
       } else {
-        // QR Tidak valid
+        // QR Tidak Valid
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -67,9 +66,11 @@ class _ScannerScreenState extends State<ScannerScreen> {
               children: [
                 Icon(Icons.error_outline, color: Colors.white),
                 SizedBox(width: 10),
-                Text(
-                  "QR Tidak ditemukan $code",
-                  overflow: TextOverflow.ellipsis,
+                Expanded(
+                  child: Text(
+                    "QR Tidak Dikenali $code",
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
@@ -85,6 +86,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
     }
   }
 
+  // tampilkan modal payment
   void _showPaymentModal(String id, int total) {
     showModalBottomSheet(
       context: context,
@@ -106,7 +108,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
         onCancel: () {
           Navigator.pop(paymentContext);
           setState(() {
-            _isScanned = false;
+            _isScanned = false; // mereset state agar bisa scan lagi dari awal
           });
         },
       ),

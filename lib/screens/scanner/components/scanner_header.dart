@@ -18,13 +18,13 @@ class ScannerHeader extends StatelessWidget {
               onTap: () => Navigator.pop(context),
               child: Container(
                 padding: EdgeInsets.all(10),
-                color: Colors.white,
                 decoration: BoxDecoration(
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: Icon(
                   Icons.arrow_back_ios_new_rounded,
-                  color: Colors.white,
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -50,7 +50,7 @@ class ScannerHeader extends StatelessWidget {
                     ),
                     child: Icon(
                       isOn ? Icons.flash_on_rounded : Icons.flash_off_rounded,
-                      color: isOn ? Colors.black : Colors.white
+                      color: isOn ? Colors.black : Colors.white,
                     ),
                   ),
                 );

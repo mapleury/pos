@@ -5,11 +5,11 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // mengambil 35% dari keseluruhan tinggi layar
-    final height = "";
+    // mengambil 35% dari kesuluruhan tinggi layar untuk home headernya
+    final height = MediaQuery.of(context).size.height * 35 / 100;
 
     return Container(
-      // height: height,
+      height: height,
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -56,7 +56,7 @@ class HomeHeader extends StatelessWidget {
           ),
           SizedBox(height: 5),
           Text(
-            'Kelola & bayar dengan mudah',
+            'Kelola dan bayar dengan mudah',
             style: TextStyle(fontSize: 14, color: Colors.white70),
           ),
         ],
